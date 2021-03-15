@@ -19,6 +19,9 @@
       <h2>1.class 绑定：:class='xxx'</h2>
       <p :class="a">hello</p>
       <h2>2.class 绑定：:class='xxx'</h2>
+      <!-- <p :class="{aClass:true,bClass:false}"></p> -->
+      <!-- 这样子写死了class里面的值，把布尔值改成动态的可以动态显示class -->
+      <p :class="{aClass:isA,bClass:isB}">hi</p>
       <button @click="update">更新</button>
     </div>
     <script src="./vue.js"></script>
@@ -27,10 +30,14 @@
         el: "#demo",
         data: {
           a: "aClass",
+          isA: true,
+          isB: false,
         },
         methods: {
           update() {
             this.a = "bClass";
+            this.isA = false;
+            this.isB = true;
           },
         },
       });

@@ -17,6 +17,11 @@
         </li>
       </ul>
       <h2>v-for遍历对象</h2>
+      <ul>
+        <li v-for="(value,key) in persons[1]" :key="key">
+          {{value}}---{{key}}
+        </li>
+      </ul>
     </div>
     <script src="./vue.js"></script>
     <script>

@@ -14,6 +14,9 @@
           {{index}}---{{p.name}}---{{p.age}}
         </li>
       </ul>
+      <button @click="setOrderType(1)">升序</button>
+      <button @click="setOrderType(2)">降序</button>
+      <button @click="setOrderType(0)">不变</button>
     </div>
     <script src="./vue.js"></script>
     <script>
@@ -21,6 +24,7 @@
         el: "#demo",
         data: {
           searchName: "",
+          orderType: 0, //0不变，1升序，2降序
           persons: [
             {
               name: "tom",
@@ -38,10 +42,25 @@
         },
         computed: {
           filterPerson() {
-            const { searchName, persons } = this;
-            let fPerson;
-            fPerson = persons.filter((p) => p.name.indexOf(searchName) !== -1);
-            return fPerson;
+            const { searchName, persons, orderType } = this;
+            let fPersons;
+            fPersons = persons.filter((p) => p.name.indexOf(searchName) !== -1);
+            if (orderType !== 0) {
+              fPersons.sort(function (p1, p2) {
+                //如果返回负数p1在前，返回正数p2在前
+                if (orderType === 1) {
+                  return p1.age - p2.age;
+                } else {
+                  return p2.age - p1.age;
+                }
+              });
+            }
+            return fPersons;
+          },
+        },
+        methods: {
+          setOrderType(value) {
+            this.orderType = value;
           },
         },
       });

@@ -5,13 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .aClass {
+        color: red;
+      }
+      .bClass {
+        color: blue;
+      }
+    </style>
   </head>
   <body>
-    <h2></h2>
-    <p></p>
+    <div id="demo">
+      <h2>1.class 绑定：:class='xxx'</h2>
+      <p :class="a">hello</p>
+      <h2>2.class 绑定：:class='xxx'</h2>
+      <button @click="update">更新</button>
+    </div>
     <script src="./vue.js"></script>
     <script>
-      new Vue({});
+      new Vue({
+        el: "#demo",
+        data: {
+          a: "aClass",
+        },
+        methods: {
+          update() {
+            this.a = "bClass";
+          },
+        },
+      });
     </script>
   </body>
 </html>

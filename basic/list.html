@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="demo">
+      <h2>v-for遍历数组</h2>
+      <ul>
+        <li v-for="(p,index) in persons" :key="index">
+          {{index}}---{{p.name}}---{{p.age}}---<button @click="deleteP(index)">
+            删除</button
+          >---<button @click="updateP(index,{name:'cat',age:10})">更新</button>
+        </li>
+      </ul>
+      <h2>v-for遍历对象</h2>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      new Vue({
+        el: "#demo",
+        data: {
+          persons: [
+            //vue本身只是监视了persons的改变，没有监视数组内部数据的改变
+            { name: "tom", age: 18 },
+            { name: "cat", age: 15 },
+            { name: "jerry", age: 14 },
+          ],
+        },
+        methods: {
+          deleteP(index) {
+            this.persons.splice(index, 1);
+          },
+          updateP(index, newP) {
+            //   数据没绑定时页面不会发生变化
+            // this.persons[index] = newP; //并没有改变persons本身，是改变了persons指向的对象
+            this.persons.splice(index, 1, newP); //修改
+            // splice可以增删改
+            // this.persons.splice(index,0,newP); 增加
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

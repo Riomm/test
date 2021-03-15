@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 显示隐藏的过滤效果 */
+      .xxx-enter-active {
+        animation: bounce-in 3s;
+      }
+      .xxx-leave-active {
+        animation: bounce-in 3s;
+        animation-direction: reverse;
+      }
+
+      /* 隐藏时的样式 */
+      .xxx-enter,
+      .xxx-leave-to {
+        /* opacity: 0.1; */
+      }
+      /* .bounce-enter-active {
+        animation: bounce-in 3s;
+      }
+      .bounce-leave-active {
+        animation: bounce-in 3s reverse;
+      }
+      .bounce-enter,
+      .bounce-leave-to {
+        opacity: 0;
+      } */
+      @keyframes bounce-in {
+        0% {
+          transform: scale(0);
+        }
+        50% {
+          transform: scale(1.5);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="demo">
+      <button @click="ok=!ok">点击</button>
+      <br />
+      <transition name="xxx">
+        <p
+          v-show="ok"
+          style="
+            background-color: red;
+            display: inline-block;
+            position: relative;
+          "
+        >
+          I am here
+        </p>
+      </transition>
+      <br />
+      <!-- <transition name="bounce">
+        <p
+          v-show="ok"
+          class="bounce-enter-to"
+          style="display: inline-block; background: red"
+        >
+          I AM HERE
+        </p>
+      </transition> -->
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      new Vue({
+        el: "#demo",
+        data: {
+          ok: true,
+        },
+      });
+    </script>
+  </body>
+</html>
